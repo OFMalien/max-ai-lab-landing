@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta name="theme-color" content="#05060f" />
+  <meta name="description" content="MAX AI LAB - AI-архитектор бизнес-систем. Превращаю рутину в автономные AI-продукты: агенты, автоматизация продаж, найма и поддержки." />
+  <title>MAX AI LAB - AI-архитектор бизнес-систем</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzA1MDYwZiIvPjxwYXRoIGQ9Ik02IDMwVjEwbDggMTIgNi05IDYgOSA4LTEydjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiNmQ5ZmMiIHN0cm9rZS13aWR0aD0iMi42IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MAX AI LAB - AI-архитектор бизнес-систем" />
+  <meta property="og:description" content="Превращаю рутину в автономные AI-продукты: агенты, автоматизация продаж, найма и поддержки." />
+  <style>
+    :root {
+      --midnight: #05060f; --steel: #2f343e; --fog: #9da7ba; --moon: #c7d3ea; --frost: #d1e4fa; --ice: linear-gradient(0deg,#d8ecf8 0%,#98c0ef 100%); --white:#fff; --violet:#663af3; --blueprint:#b6d9fc; --edge:rgba(186,215,247,.12); --glass:rgba(186,214,247,.03); --ease-out:cubic-bezier(.23,1,.32,1); --section:120px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--midnight); }
+    body { margin:0; background:var(--midnight); color:var(--moon); font-family:Inter, sans-serif; font-size:16px; line-height:1.55; letter-spacing:-.01em; overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:-2; opacity:.5; background-image:linear-gradient(rgba(186,215,247,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(186,215,247,.055) 1px,transparent 1px); background-size:92px 92px; mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 92%); }
+    body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:-1; background:radial-gradient(circle at 50% 0%,rgba(106,130,176,.17),transparent 32%),radial-gradient(circle at 80% 64%,rgba(76,83,141,.08),transparent 24%); }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    svg.icon { display:block; }
+    .site-shell { min-height:100vh; }
+    .site-header { position:fixed; top:0; left:0; right:0; z-index:20; height:76px; display:flex; align-items:center; justify-content:space-between; gap:26px; padding:0 max(24px,calc((100vw - 1200px)/2)); transition:background .25s var(--ease-out), backdrop-filter .25s var(--ease-out), border-color .25s var(--ease-out); border-bottom:1px solid transparent; }
+    .site-header.is-scrolled { background:rgba(5,6,15,.72); backdrop-filter:blur(18px); border-color:var(--edge); }
+    .brand { display:flex; align-items:center; gap:10px; color:var(--frost); font:500 15px/1 'Space Grotesk',sans-serif; letter-spacing:.06em; white-space:nowrap; }
+    .brand-mark { width:30px; height:30px; display:grid; place-items:center; border-radius:9999px; background:rgba(186,214,247,.06); box-shadow:inset 0 1px 1px rgba(216,236,248,.2),0 0 12px rgba(186,207,247,.16); }
+    .brand-mark img { width:19px; height:19px; object-fit:contain; }
+    nav { display:flex; gap:26px; align-items:center; color:var(--fog); font-size:14px; }
+    nav a { transition:color .18s var(--ease-out); } nav a:hover { color:var(--white); }
+    .pill { display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:999px; padding:10px 17px; border:1px solid var(--edge); color:var(--frost); font-size:14px; font-weight:500; transition:transform .16s var(--ease-out),background .18s var(--ease-out),box-shadow .18s var(--ease-out); cursor:pointer; }
+    .pill:hover { background:rgba(186,214,247,.1); box-shadow:0 0 6px rgba(186,207,247,.18); transform:translateY(-2px); } .pill:active { transform:scale(.97); }
+    .pill.primary { color:#fff; background:var(--violet); border-color:transparent; box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 10px 30px rgba(102,58,243,.22); } .pill.primary:hover { background:#754df8; }
+    .pill.violet { background:var(--violet); color:#fff; border-color:transparent; padding:9px 15px; }
+    .pill.large { padding:13px 22px; }
+    .menu-toggle { display:none; color:var(--frost); border:0; background:none; cursor:pointer; }
+    .section-wrap { width:min(1200px,calc(100% - 48px)); margin:0 auto; }
+    .hero { position:relative; min-height:860px; padding-top:180px; display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:32px; }
+    .hero-art { position:absolute; inset:76px -20vw 0; z-index:-1; opacity:.26; mask-image:radial-gradient(ellipse at 50% 30%,#000 0%,rgba(0,0,0,.7) 38%,transparent 76%); }
+    .hero-art img { width:100%; height:100%; object-fit:cover; object-position:center; }
+    .hero-copy { position:relative; z-index:2; max-width:700px; }
+    .eyebrow { display:flex; align-items:center; justify-content:center; gap:15px; color:var(--moon); font:400 12px/1.2 'JetBrains Mono',monospace; letter-spacing:.1em; text-transform:uppercase; }
+    .eyebrow span:first-child,.eyebrow span:last-child { height:1px; width:78px; background:linear-gradient(90deg,transparent,var(--edge)); } .eyebrow span:last-child { background:linear-gradient(90deg,var(--edge),transparent); }
+    h1,h2,h3 { margin:0; font-family:'Space Grotesk',sans-serif; font-weight:500; letter-spacing:-.035em; }
+    h1 { margin-top:28px; color:var(--frost); font-size:clamp(52px,7.6vw,98px); line-height:.94; text-shadow:0 0 26px rgba(186,207,247,.1); } h1 em,h2 span { font-style:normal; background:var(--ice); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .hero-kicker { margin:22px 0 12px; color:var(--frost); font:500 clamp(18px,2vw,24px)/1.25 'Space Grotesk',sans-serif; }
+    .hero-intro { max-width:520px; margin:0 0 28px; color:var(--fog); font-size:17px; }
+    .tool-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:54px; max-width:650px; }
+    .tool-badge,.skill-chip { display:inline-flex; align-items:center; gap:9px; padding:7px 10px; border-radius:6px; background:rgba(186,214,247,.055); color:var(--frost); box-shadow:inset 0 1px 1px rgba(199,211,234,.12),inset 0 24px 48px rgba(199,211,234,.025); font-size:12px; }
+    .tool-badge i,.skill-chip i { color:var(--fog); font:400 10px 'JetBrains Mono',monospace; font-style:normal; }
+    .portrait-wrap { position:relative; justify-self:center; width:min(390px,82vw); aspect-ratio:1; display:grid; place-items:center; }
+    .portrait-glow { position:absolute; inset:5%; border-radius:50%; background:conic-gradient(from 30deg,rgba(186,215,247,.07),rgba(186,215,247,.5),rgba(102,58,243,.2),rgba(186,215,247,.04)); filter:blur(18px); animation:spin 20s linear infinite; }
+    .portrait-frame { width:78%; aspect-ratio:1; border-radius:50%; padding:8px; position:relative; background:rgba(5,6,15,.7); box-shadow:inset 0 1px 1px rgba(216,236,248,.3),inset 0 24px 48px rgba(168,216,245,.07),0 0 6px rgba(186,207,247,.32),0 0 30px rgba(186,207,247,.14); }
+    .portrait-frame::before { content:""; position:absolute; inset:-12px; border:1px solid rgba(186,215,247,.18); border-radius:50%; border-left-color:transparent; transform:rotate(25deg); }
+    .portrait-frame img { width:100%; height:100%; object-fit:cover; object-position:center 25%; border-radius:50%; filter:saturate(.85) contrast(1.03); }
+    .portrait-caption { position:absolute; bottom:3%; right:0; color:var(--fog); font:400 10px 'JetBrains Mono',monospace; letter-spacing:.12em; }
+    .hero-side-card { position:absolute; right:0; bottom:80px; width:210px; padding:18px; transform:rotate(3deg); } .hero-side-card p { margin:15px 0 0; color:var(--frost); font:500 14px/1.35 'Space Grotesk',sans-serif; }
+    .glass-card { position:relative; overflow:hidden; background:linear-gradient(135deg,rgba(186,214,247,.075),rgba(186,214,247,.02) 42%,rgba(5,6,15,.22)); border-radius:16px; box-shadow:inset 0 1px 1px rgba(216,236,248,.2),inset 0 24px 48px rgba(168,216,245,.06),inset -18px -22px 42px rgba(5,6,15,.18),0 24px 32px rgba(6,6,14,.7); } .glass-card::before { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(115deg,rgba(216,236,248,.12),transparent 22%,transparent 72%,rgba(182,217,252,.04)); opacity:.7; }
+    .micro { color:var(--fog); font:400 10px 'JetBrains Mono',monospace; letter-spacing:.1em; }
+    .side-line { margin-top:18px; height:1px; background:linear-gradient(90deg,var(--blueprint),transparent); opacity:.5; }
+    .section { position:relative; margin-top:var(--section); } .section::before { content:""; position:absolute; left:-7vw; right:-7vw; top:-24px; height:1px; background:linear-gradient(90deg,transparent 4%,rgba(182,217,252,.13) 24%,rgba(182,217,252,.13) 76%,transparent 96%); opacity:.65; } .section::after { content:""; position:absolute; top:-24px; left:8%; width:1px; height:calc(100% + 24px); background:linear-gradient(180deg,rgba(182,217,252,.2),transparent 15%,transparent 88%,rgba(182,217,252,.08)); opacity:.25; pointer-events:none; } .section > * { position:relative; z-index:1; }
+    .section > .eyebrow { margin-bottom:56px; }
+    .split-heading,.section-intro,.automation-layout { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+    h2 { color:var(--frost); font-size:clamp(40px,5.2vw,66px); line-height:.98; text-shadow:0 0 22px rgba(186,207,247,.08); } h2 span { display:inline-block; }
+    .split-heading p,.section-intro p,.automation-layout p { margin:5px 0 0; max-width:520px; color:var(--fog); font-size:16px; }
+    .about-panel { margin-top:58px; min-height:250px; padding:28px; display:grid; grid-template-columns:180px 1fr 220px; gap:28px; align-items:center; overflow:hidden; }
+    .panel-badge { color:var(--frost); display:flex; flex-direction:column; gap:15px; font:500 14px/1.3 'Space Grotesk'; } .icon-tile { width:52px; height:52px; display:grid; place-items:center; border-radius:9999px; color:var(--blueprint); background:rgba(186,214,247,.055); box-shadow:inset 0 1px 1px rgba(216,236,248,.2),inset 0 24px 48px rgba(168,216,245,.06); } .about-panel p { color:var(--moon); margin:0; line-height:1.65; } .panel-image { height:180px; opacity:.45; mask-image:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent); } .panel-image img { width:100%; height:100%; object-fit:cover; }
+    .section-intro { margin-bottom:45px; } .section-intro.compact { margin-bottom:38px; }
+    .services-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; } .service-card { min-height:270px; padding:22px; position:relative; transition:transform .2s var(--ease-out),background .2s var(--ease-out); } .service-card:hover { transform:translateY(-6px); background:rgba(186,214,247,.065); } .service-card .icon-tile { margin-bottom:35px; } .service-card h3 { color:var(--frost); font-size:20px; margin:14px 0 10px; } .service-card p { color:var(--fog); font-size:13px; line-height:1.55; } .card-arrow { position:absolute; right:20px; bottom:20px; color:var(--blueprint); opacity:.5; }
+    .skill-cloud { position:relative; display:flex; flex-wrap:wrap; gap:8px; padding:34px 28px 30px; max-width:1100px; border-top:1px solid var(--edge); border-bottom:1px solid rgba(186,215,247,.08); background:linear-gradient(90deg,rgba(186,214,247,.035),transparent 45%,rgba(186,214,247,.02)); } .skill-cloud::before { content:"ARCHIVE / AI SYSTEMS / 046"; position:absolute; top:10px; right:28px; color:rgba(182,217,252,.55); font:400 9px 'JetBrains Mono',monospace; letter-spacing:.1em; } .skill-chip { font-size:13px; padding:9px 11px; border-radius:6px; transition:transform .2s var(--ease-out),background .2s var(--ease-out); } .skill-chip:hover { transform:translateY(-3px); background:rgba(186,214,247,.09); }
+    .cases-heading { display:grid; grid-template-columns:1fr 1fr; align-items:end; gap:50px; margin-bottom:48px; } .cases-heading img { width:100%; height:240px; object-fit:cover; border-radius:16px; opacity:.8; box-shadow:inset 0 1px 1px rgba(216,236,248,.2),0 24px 32px rgba(6,6,14,.7); }
+    .projects-list { border-top:1px solid var(--edge); } .project-row { display:grid; grid-template-columns:70px 1fr 24px; gap:20px; align-items:start; padding:23px 0; border-bottom:1px solid rgba(186,215,247,.08); transition:padding .2s var(--ease-out),background .2s var(--ease-out); } .project-row:hover { padding-left:12px; padding-right:12px; background:rgba(186,214,247,.025); } .project-no { color:var(--fog); font:400 12px 'JetBrains Mono'; } .project-row p { color:var(--moon); margin:0; max-width:820px; font-size:15px; } .project-row strong { color:var(--frost); font-weight:500; } .project-arrow { color:var(--blueprint); opacity:.6; }
+    .automation { padding-bottom:30px; } .automation-layout { align-items:start; } .automation-layout > div:first-child p { margin-top:24px; } .automation-stack { border-top:1px solid var(--edge); } .automation-row { display:grid; grid-template-columns:46px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid rgba(186,215,247,.08); } .automation-row h3 { color:var(--frost); font-size:18px; } .automation-row p { margin-top:6px; font-size:14px; }
+    .quote-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; } .quote-card { padding:28px; min-height:340px; } .quote-card .eyebrow { justify-content:flex-start; margin-bottom:36px; } .quote-card .eyebrow span:first-child,.quote-card .eyebrow span:last-child { display:none; } blockquote { margin:0; color:var(--frost); font:400 clamp(20px,2.3vw,29px)/1.25 'Space Grotesk',sans-serif; letter-spacing:-.025em; } .security { background:linear-gradient(135deg,rgba(186,214,247,.06),rgba(186,214,247,.015)); }
+    .contact { position:relative; text-align:center; padding:100px 0 110px; overflow:hidden; } .contact-glow { position:absolute; inset:0; z-index:-1; background:radial-gradient(circle at 50% 55%,rgba(102,58,243,.16),transparent 45%); } .contact h2 { margin:30px auto 30px; } .contact-note { color:var(--fog); font-size:13px; margin-top:22px; }
+    footer { width:min(1200px,calc(100% - 48px)); margin:0 auto; padding:28px 0 40px; border-top:1px solid var(--edge); display:flex; justify-content:space-between; gap:16px; color:var(--fog); font:400 11px 'JetBrains Mono'; letter-spacing:.06em; }
+    .reveal { opacity:0; transform:translateY(18px); } .reveal-delay-2 { animation-delay:.18s; } @media (prefers-reduced-motion:no-preference) { .reveal { animation:reveal .75s var(--ease-out) forwards; } .reveal-delay-2 { animation-delay:.18s; } }
+    @keyframes reveal { to { opacity:1; transform:none; } } @keyframes spin { to { transform:rotate(360deg); } }
+    @media (max-width:980px) { .site-header { padding:0 24px; } nav { gap:16px; } .hero { min-height:760px; } .services-grid { grid-template-columns:repeat(3,1fr); } .about-panel { grid-template-columns:150px 1fr; } .panel-image { display:none; } }
+    @media (max-width:720px) { :root { --section:88px; } .section::before { left:-4vw; right:-4vw; } .section::after { left:3%; } .skill-cloud { padding-left:14px; padding-right:14px; } .skill-cloud::before { right:14px; font-size:8px; } .site-header { height:68px; } .desktop-contact { display:none; } .menu-toggle { display:block; } nav { display:none; position:absolute; left:16px; right:16px; top:62px; padding:18px; flex-direction:column; align-items:flex-start; gap:17px; background:rgba(5,6,15,.95); border:1px solid var(--edge); border-radius:16px; box-shadow:inset 0 1px 1px rgba(216,236,248,.2),0 16px 32px rgba(0,0,0,.3); } nav.open { display:flex; } .section-wrap,footer { width:min(100% - 32px,1200px); } .hero { padding-top:135px; min-height:0; grid-template-columns:1fr; gap:36px; text-align:center; } .hero-copy { order:1; } .hero .eyebrow { justify-content:center; } .hero-intro { margin-left:auto; margin-right:auto; } .tool-row { justify-content:center; margin-top:36px; } .portrait-wrap { order:0; width:70vw; } .hero-side-card { display:none; } .split-heading,.section-intro,.automation-layout,.cases-heading { grid-template-columns:1fr; gap:26px; } .section > .eyebrow { margin-bottom:36px; } .about-panel { grid-template-columns:1fr; padding:22px; margin-top:34px; } .services-grid { grid-template-columns:1fr 1fr; } .service-card { min-height:250px; } .quote-grid { grid-template-columns:1fr; } footer { flex-wrap:wrap; justify-content:center; text-align:center; } }
+    @media (max-width:470px) { h1 { font-size:45px; } h2 { font-size:38px; } .services-grid { grid-template-columns:1fr; } .service-card { min-height:205px; } .project-row { grid-template-columns:38px 1fr; gap:12px; } .project-arrow { display:none; } .quote-card { padding:22px; min-height:auto; } blockquote { font-size:22px; } }
+  </style>
+</head>
+<body>
+  <!-- Reusable line icons (placeholder set, swap for lucide/your own later) -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.8 6.8l1.8 1.8M15.4 15.4l1.8 1.8M6.8 17.2l1.8-1.8M15.4 8.6l1.8-1.8"/></symbol>
+      <symbol id="i-workflow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><path d="M10 6.5h4A2.5 2.5 0 0 1 16.5 9v5"/></symbol>
+      <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6l7-3z"/><polyline points="9 12 11 14 15 10"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+      <symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2.5"/><path d="M12 9V5"/><circle cx="12" cy="4" r="1.1"/><circle cx="9" cy="14.5" r="1.2"/><circle cx="15" cy="14.5" r="1.2"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="site-shell">
+    <header class="site-header" id="site-header">
+      <a class="brand" href="#top"><span class="brand-mark"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZD0iTTYgMzBWMTBsOCAxMiA2LTkgNiA5IDgtMTJ2MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I2ZDlmYyIgc3Ryb2tlLXdpZHRoPSIyLjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPgo=" alt="" /></span><span>MAX AI LAB</span></a>
+      <nav id="site-nav">
+        <a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#contact">Контакт</a>
+      </nav>
+      <a class="pill violet desktop-contact" href="#contact">Связаться <svg class="icon" width="15" height="15"><use href="#i-arrow"/></svg></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Меню" aria-expanded="false"><svg class="icon" width="24" height="24"><use href="#i-menu" id="menu-icon-use"/></svg></button>
+    </header>
+
+    <main id="top">
+      <section class="hero section-wrap">
+        <div class="hero-art" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgODAwIj48Y2lyY2xlIGN4PSI0MDAiIGN5PSI0MDAiIHI9IjM2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjZkOWZjIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjIgMTAiIG9wYWNpdHk9IjAuMzUiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSI0MDAiIHI9IjI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjZkOWZjIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjIgOCIgb3BhY2l0eT0iMC4zIi8+PGNpcmNsZSBjeD0iNDAwIiBjeT0iNDAwIiByPSIxNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY2M2FmMyIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9IjAuNCIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjQwMCIgcj0iNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I2ZDlmYyIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPgo=" alt="" /></div>
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> <span>MAX AI LAB</span> <span></span></div>
+          <h1>AI-архитектор<br /><em>бизнес-систем</em></h1>
+          <p class="hero-kicker">превращаю рутину в автономные продукты</p>
+          <p class="hero-intro">Я специализируюсь на превращении сложных бизнес-процессов в автономные AI-системы и работающие IT-продукты.</p>
+          <a class="pill primary" href="#contact">Обсудить проект <svg class="icon" width="16" height="16"><use href="#i-arrow"/></svg></a>
+          <div class="tool-row" id="tool-row"></div>
+        </div>
+        <div class="portrait-wrap reveal reveal-delay-2"><div class="portrait-glow"></div><div class="portrait-frame"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzBiMGUxYyIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I2ZDlmYyIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjU1Ii8+PHBhdGggZD0iTTg0IDM0NGMwLTcyIDUyLTEyNCAxMTYtMTI0czExNiA1MiAxMTYgMTI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNiNmQ5ZmMiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC41NSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iMjAwIiB5PSIzODYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTMiIGxldHRlci1zcGFjaW5nPSIyIiBmaWxsPSIjOWRhN2JhIj5QSE9UTyBQTEFDRUhPTERFUjwvdGV4dD48L3N2Zz4K" alt="" /></div><span class="portrait-caption">UKRAINE, Dnipro</span></div>
+        <div class="hero-side-card glass-card"><span class="micro">SYSTEM / 01</span><p>Искусственный интеллект в каждый бизнес. Максимум автоматизации - максимум прибыли.</p><div class="side-line"></div></div>
+      </section>
+
+      <section id="about" class="section-wrap section reveal">
+        <div class="eyebrow"><span></span> <span>Обо мне</span> <span></span></div>
+        <div class="split-heading">
+          <h2>Техническая глубина.<br /><span>Предпринимательский взгляд.</span></h2>
+          <div><p>Мой подход объединяет глубокую техническую экспертизу (Full-Stack разработка, системный промпт-инжиниринг, интеграция LLM) с предпринимательским видением (маркетинг, юнит-экономика, GTM-стратегии). Я не просто настраиваю нейросети или пишу код - я нахожу «узкие горлышки» и точки потери денег в бизнесе, проектирую AI-архитектуру и создаю цифровых сотрудников, автоматизируя процессы от продаж и лидогенерации до найма и производства контента. Моя главная метрика - сэкономленные деньги и время клиента.</p></div>
+        </div>
+        <div class="about-panel glass-card">
+          <div class="panel-badge"><div class="icon-tile"><svg class="icon" width="24" height="24"><use href="#i-bot"/></svg></div><span>AI-архитектор<br />бизнес-систем</span></div>
+          <p>Я предприниматель, развивающий собственный медиа-бизнес. Я знаю цену ошибки в маркетинге и удержании клиентов, поэтому выстроил автономную AI-систему для своей компании. Сегодня через «Макс AI lab» я внедряю такие же надежные, приватные и окупаемые решения для других бизнесов. Я не предлагаю вам консалтинг ради консалтинга - я предлагаю готовые MVP и системы, которые сразу начинают работать на вас.</p>
+          <div class="panel-image"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0iZyIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNNDAgMEgwVjQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiNmQ5ZmMiIHN0cm9rZS13aWR0aD0iMC42IiBvcGFjaXR5PSIwLjM1Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBiMGUxYyIvPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+PC9zdmc+Cg==" alt="" /></div>
+        </div>
+      </section>
+
+      <section id="services" class="section-wrap section reveal">
+        <div class="eyebrow"><span></span> <span>Что я делаю</span> <span></span></div>
+        <div class="section-intro">
+          <h2>Автоматизация,<br /><span>которая работает.</span></h2>
+          <p>строю «второй мозг» для вашего бизнеса и внедряю AI-сотрудников, которые работают 24/7. От автоматизации клиентских чатов и расчетов стоимости до создания комплексных SaaS-платформ и маркетинговых воронок.</p>
+        </div>
+        <div class="services-grid" id="services-grid"></div>
+      </section>
+
+      <section class="section-wrap section skills-section reveal">
+        <div class="eyebrow"><span></span> <span>Экспертиза</span> <span></span></div>
+        <div class="section-intro compact">
+          <h2>Инструменты<br /><span>и подходы.</span></h2>
+          <p>разрабатываю кастомные AI-продукты и автоматизирую бизнес-процессы под ключ. Внедряю автономных агентов, которые увеличивают конверсию, сокращают ручной труд и масштабируют вашу прибыль без расширения штата.</p>
+        </div>
+        <div class="skill-cloud" id="skill-cloud"></div>
+      </section>
+
+      <section id="cases" class="section-wrap section reveal">
+        <div class="eyebrow"><span></span> <span>Мои проекты и кейсы</span> <span></span></div>
+        <div class="cases-heading">
+          <h2>Системы,<br /><span>созданные под задачу.</span></h2>
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDQwMCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImcyIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik02MCAwSDBWNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I2ZDlmYyIgc3Ryb2tlLXdpZHRoPSIwLjYiIG9wYWNpdHk9IjAuMyIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMGIwZTFjIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cyKSIvPjxjaXJjbGUgY3g9IjYwMCIgY3k9IjIwMCIgcj0iMTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiM2NjNhZjMiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjQiLz48dGV4dCB4PSI2MDAiIHk9IjIwNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxNiIgbGV0dGVyLXNwYWNpbmc9IjQiIGZpbGw9IiNjN2QzZWEiIG9wYWNpdHk9IjAuNyI+Q0FTRSBBUkNISVZFIFBMQUNFSE9MREVSPC90ZXh0Pjwvc3ZnPgo=" alt="" />
+        </div>
+        <div class="projects-list" id="projects-list"></div>
+      </section>
+
+      <section class="section-wrap section automation reveal">
+        <div class="eyebrow"><span></span> <span>Что можно автоматизировать для бизнеса</span> <span></span></div>
+        <div class="automation-layout">
+          <div><h2>Ваш бизнес.<br /><span>Второй мозг.</span></h2><p>Искусственный интеллект в каждый бизнес. Максимум автоматизации - максимум прибыли.</p></div>
+          <div class="automation-stack" id="automation-stack"></div>
+        </div>
+      </section>
+
+      <section class="section-wrap quote-grid reveal">
+        <div class="quote-card glass-card">
+          <div class="eyebrow"><span></span> <span>О студии Max AI lab</span> <span></span></div>
+          <blockquote>Разрабатываю кастомные продукты под любой бизнес: кафе, магазины, отели, агентства. От автоматизации бронирования столиков и заявок поставщикам до внедрения AI-бухгалтеров и AI-маркетологов. Мы делаем всё: от конверсионных лендингов и генерации баннеров до интеграции полноценных цифровых сотрудников, которые работают 24/7, продают, мониторят конкурентов и никогда не уходят в отпуск.</blockquote>
+        </div>
+        <div class="quote-card glass-card security">
+          <div class="eyebrow"><span></span> <span>Анонимность и безопасность</span> <span></span></div>
+          <blockquote>Ваши данные остаются вашими. Я внедряю системы (включая распознавание голоса и чат-ботов), которые могут работать абсолютно локально на ваших устройствах. Хотите делегировать общение? AI-бот научится на ваших прошлых переписках отвечать в точности как вы, сохраняя полную анонимность. Никто не поймет, что общается с нейросетью.</blockquote>
+        </div>
+      </section>
+
+      <section id="contact" class="contact section-wrap reveal">
+        <div class="contact-glow"></div>
+        <div class="eyebrow"><span></span> <span>Контакт</span> <span></span></div>
+        <h2>Готовы собрать<br /><span>свою систему?</span></h2>
+        <a class="pill primary large" href="https://t.me/max_ai_labs" target="_blank" rel="noreferrer">Обсудить проект <svg class="icon" width="17" height="17"><use href="#i-arrow"/></svg></a>
+        <p class="contact-note">AI в каждый бизнес. Максимум автоматизации - максимум прибыли.</p>
+      </section>
+    </main>
+    <footer>
+      <a class="brand" href="#top"><span class="brand-mark"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZD0iTTYgMzBWMTBsOCAxMiA2LTkgNiA5IDgtMTJ2MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I2ZDlmYyIgc3Ryb2tlLXdpZHRoPSIyLjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPgo=" alt="" /></span><span>MAX AI LAB</span></a>
+      <span>UKRAINE, Dnipro</span>
+      <span>© MAX AI LAB</span>
+    </footer>
+  </div>
+
+  <script>
+    // ---- data (verbatim from the original brief) ----
+    var tools = ["Claude", "ChatGPT", "Gemini", "Manus", "Antigravity", "n8n", "Perplexity", "Hermes", "Kimi"];
+    var skills = ["Проектирование AI-продуктов с нуля", "Системная архитектура: превращение разовой рутины в параметризованный код", "Создание MVP (минимально жизнеспособного продукта) для быстрой проверки гипотез", "Управление AI-разработкой: дирижирование моделями для написания и рефакторинга кода", "Проектирование баз данных и сложных реляционных схем (Prisma, SQLite, Postgres)", "Разработка SaaS-платформ (мультиарендность, ролевые модели доступа, биллинг)", "Системный промпт и контекст-инжиниринг.", "Проектирование логики AI-агентов (управление памятью, скиллами, персонализацией)", "Работа с RAG-системами и локальными базами знаний", "Современная веб-разработка", "Скрытая браузерная автоматизация и обход антифрод-систем (Patchright, работа с cookies, фингерпринтами).", "Парсинг данных (Web Scraping, OSINT, Data Mining).", "Работа с Telegram API (боты-ассистенты, агенты, парсинг).", "Разработка AI-агентов под конкретные бизнес-роли", "Создание автономных систем из нескольких взаимодействующих агентов", "Разработка «Второго мозга» бизнеса (интеграция корпоративной базы знаний с AI)", "Внедрение AI-суфлеров для сотрудников, подсказывающих ответы на основе контекста", "Автоматизация работы с локальными и облачными LLM.", "Настройка клонов-ботов, обучающихся на стиле общения владельца для анонимной обработки личных переписок.", "Автоматический сбор лидов из веб-форм и мессенджеров", "AI-квалификация лидов", "Автоматический расчет стоимости услуг (интеграция парсеров валют, акцизов и калькуляторов в боты/лендинги)", "Динамическое ведение воронки продаж с помощью AI.", "Автоматизация переговоров в чатах (с сохранением контекста и «персоны»)", "Настройка умных алертов и уведомлений для отдела продаж", "AI-генерация конверсионных лендингов и текстового контента", "Автоматизация пайплайна создания видео", "Автоматическая генерация обложек, баннеров и графики", "Создание систем для автоматического парсинга и анализа рекламы/продуктов конкурентов", "Автоматизация обработки входящих заявок в месседжерах и на сайте", "Интеграция AI с внутренними базами данных для контекстных ответов клиента", "Автоматическое бронирование услуг (столики, номера, записи) через чат-ботов", "Автоматизация HR-воронки: от первичной анкеты до первого созвона", "Симуляция рабочих процессов для новичков (тренажеры на базе ИИ)", "Экзаменация и AI-грейдинг: автоматическая проверка тестовых заданий ИИ-моделью", "Автоматическая транскрибация аудио- и видеозвонков (локально, без облака)", "Извлечение структурированных данных из неструктурированных источников (голос, скриншоты, переписки)", "Автоматизация сбора отзывов и проведения аудита конверсии", "Связка CRM-систем, баз данных и мессенджеров.", "Подключение кастомных калькуляторов к веб-интерфейсам", "Построение пайплайнов на базе API", "Агенты с распознаванием речи и компьютерным зрением", "Аудит воронок продаж, поиск «дыр» в конверсии и их устранение", "Переупаковка продуктов: адаптация невыстреливших решений для новых рынков", "Финансовое моделирование и юнит-экономика AI систем", "Формирование бизнес-офферов и позиционирования вашего продукта/услуг"];
+    var projects = [
+      ["Marketolog (SaaS):", "AI-маркетолог в аренду, живущий в рабочем чате (TG/Slack) клиента. Выдает готовые лендинги, посты и аналитику конкурентов по подписке."],
+      ["OFM SYNDICATE:", "B2B платформа для управления аккаунтами с мультиарендностью, сложными AI-персонажами, автоматизацией воронки продаж в чатах и системой обхода антифрода (Patchright + Session Hijacking)."],
+      ["4Drive Auto UA:", "Лендинг и Telegram-бот калькулятор пригона авто из США. Автопарсинг курсов НБУ, расчет акцизов, бесшовная интеграция бота в сайт."],
+      ["B-mind (Business Mind):", "AI-агент для малого бизнеса, выступающий как бизнес-партнер и работающий с реальными данными компании."],
+      ["Tur House (Маркетинг-кейс):", "Аудит загородного комплекса. Нахождение критических точек потери конверсии, быстрая сборка нового лендинга и перепозиционирование в «приватный спа-отдых»."],
+      ["Training Bot:", "Платформа для обучения и контроля сотрудников. Локальная база данных, симуляция диалогов, автоматический AI-грейдинг качества ответов."],
+      ["AIVoice:", "Кроссплатформенные десктопные инструменты локального голосового управления и диктовки (Privacy-first)."],
+      ["Анкетабот:", "Автоматизированная воронка первичного скрининга кандидатов до созвона."],
+      ["TG Tools (Парсеры):", "Экосистема скриптов для массового парсинга переписок, аналитики и их выжимки во внутреннюю базу знаний («мозг»)."],
+      ["Alien Brain:", "Внутренняя LLM-система управления файловой системой и памятью агентства."]
+    ];
+    var services = [
+      ["Маркетинг и лиды", "Создание контента для соцсетей, сбор аналитики по конкурентам, создание посадочных страниц, квалификация входящих заявок."],
+      ["Отдел продаж", "Автоматические расчеты стоимости для клиентов 24/7, маршрутизация диалогов, ведение клиента по ступеням продаж без участия менеджера."],
+      ["HR и найм", "Проведение первичных интервью, сбор и фильтрация анкет, обучение стажеров на AI-тренажерах, оценка тестовых заданий."],
+      ["Операционка и контроль", "Транскрибация всех созвонов, создание выжимок из чатов, ведение базы знаний компании («второй мозг»), к которому каждый сотрудник может обратиться с вопросом по регламенту."],
+      ["Поддержка и сервис", "Бронирование услуг (столики, гостиницы), ответы на типовые и сложные вопросы с учетом tone of voice бренда."]
+    ];
+    var serviceIcons = ["i-sparkles", "i-workflow", "i-database", "i-shield", "i-send"];
+
+    function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    document.getElementById("tool-row").innerHTML = tools.map(function (t, i) {
+      return '<span class="tool-badge"><i>' + pad(i + 1) + '</i>' + esc(t) + '</span>';
+    }).join("");
+
+    document.getElementById("skill-cloud").innerHTML = skills.map(function (s, i) {
+      return '<span class="skill-chip"><i>' + pad(i + 1) + '</i>' + esc(s) + '</span>';
+    }).join("");
+
+    document.getElementById("services-grid").innerHTML = services.map(function (s, i) {
+      return '<article class="glass-card service-card"><div class="icon-tile"><svg class="icon" width="24" height="24"><use href="#' + serviceIcons[i] + '"/></svg></div><span class="micro">0' + (i + 1) + '</span><h3>' + esc(s[0]) + '</h3><p>' + esc(s[1]) + '</p><svg class="icon card-arrow" width="20" height="20"><use href="#i-chevron"/></svg></article>';
+    }).join("");
+
+    document.getElementById("automation-stack").innerHTML = services.map(function (s, i) {
+      return '<div class="automation-row"><span class="micro">0' + (i + 1) + '</span><div><h3>' + esc(s[0]) + '</h3><p>' + esc(s[1]) + '</p></div></div>';
+    }).join("");
+
+    document.getElementById("projects-list").innerHTML = projects.map(function (p, i) {
+      return '<article class="project-row"><span class="project-no">' + pad(i + 1) + '</span><p><strong>' + esc(p[0]) + '</strong> ' + esc(p[1]) + '</p><svg class="icon project-arrow" width="18" height="18"><use href="#i-arrow"/></svg></article>';
+    }).join("");
+
+    // ---- header scroll shadow ----
+    var header = document.getElementById("site-header");
+    window.addEventListener("scroll", function () {
+      header.classList.toggle("is-scrolled", window.scrollY > 20);
+    });
+
+    // ---- mobile nav toggle ----
+    var nav = document.getElementById("site-nav");
+    var toggle = document.getElementById("menu-toggle");
+    var menuIconUse = document.getElementById("menu-icon-use");
+    function setOpen(open) {
+      nav.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      menuIconUse.setAttribute("href", open ? "#i-x" : "#i-menu");
+    }
+    toggle.addEventListener("click", function () { setOpen(!nav.classList.contains("open")); });
+    nav.addEventListener("click", function (e) { if (e.target.tagName === "A") setOpen(false); });
+  </script>
+</body>
+</html>
